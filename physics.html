@@ -1,0 +1,214 @@
+<html>
+<head>
+  <title>Physics Prep</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+</head>
+<body>
+
+<div class="container">
+  <center><h1>Physics Prep</h1></center>
+  <button onclick="location.reload();">Refresh</button>
+  <button onclick="changeProb();">New Problem</button>
+  <button onclick="checkAns();">Check Answer</button>
+  <a href="helppage.html"><button>Help Page</button></a>
+  <div class="problem">
+    <p id="problemTxt">Press New Problem Button</p>
+  </div>
+  <div class="work-area" ondrop="dropWork(event)" ondragover="allowDrop(event)">
+
+  </div>
+  <div class="bank" ondrop="dropBank(event)" ondragover="allowDrop(event)">
+    <div class="row">
+      <div class="blocks col-xs-1" draggable="true" ondragstart="drag(event)" onclick="changeVar(this.id)" id="velocity"> <a title="velocity"><b>v</b></a></div>
+      <div class="blocks col-xs-1" draggable="true" ondragstart="drag(event)" onclick="changeVar(this.id)" id="initial velocity"><a title="initial velocity"> <b>v</b><sub>0</sub> </a></div>
+      <div class="blocks col-xs-1" draggable="true" ondragstart="drag(event)" onclick="changeVar(this.id)" id="acceleration"><a title="acceleration"> a </a></div>
+      <div class="blocks col-xs-1" draggable="true" ondragstart="drag(event)" onclick="changeVar(this.id)" id="time"><a title="time"> t </a></div>
+      <div class="blocks col-xs-1" draggable="true" ondragstart="drag(event)" onclick="changeVar(this.id)" id="displacement"><a title="displacement"> &#916s </a></div>
+      <div class="blocks col-xs-1" draggable="true" ondragstart="drag(event)" onclick="changeVar(this.id)" id="momemtum"><a title="momentum"> p </a></div>
+      <div class="blocks col-xs-1" draggable="true" ondragstart="drag(event)" onclick="changeVar(this.id)" id="mass"><a title="mass"> m </a></div>
+      <div class="blocks col-xs-1" draggable="true" ondragstart="drag(event)" onclick="changeVar(this.id)" id="speed"><a title="speed"> <i>v</i> </a></div>
+      <div class="blocks col-xs-1" draggable="true" ondragstart="drag(event)" onclick="changeVar(this.id)" id="distance"><a title="distance"> d </a></div>
+      <div class="blocks col-xs-1" draggable="true" ondragstart="drag(event)" onclick="changeVar(this.id)" id="force"><a title="force"> F </a></div>
+      <div class="blocks col-xs-1" draggable="true" ondragstart="drag(event)" onclick="changeVar(this.id)" id="weight"><a title="weight"> W </a></div>
+      <div class="blocks col-xs-1" draggable="true" ondragstart="drag(event)" onclick="changeVar(this.id)" id="gravitational acceleration"><a title="gravitational acceleration"> g </a></div>
+      <div class="blocks col-xs-1" draggable="true" ondragstart="drag(event)" onclick="changeVar(this.id)" id="change in"><a title="change in "> &#916 </a></div>
+      <div class="blocks col-xs-1 operations" draggable="true" ondragstart="drag(event)" id="equal"> = </div>
+      <div class="blocks col-xs-1 operations" draggable="true" ondragstart="drag(event)" id="plus"> + </div>
+      <div class="blocks col-xs-1 operations" draggable="true" ondragstart="drag(event)" id="divide"> / </div>
+      <div class="blocks col-xs-1 operations" draggable="true" ondragstart="drag(event)" id="minus"> - </div>
+      <div class="blocks col-xs-1 operations" draggable="true" ondragstart="drag(event)" id="multiply"> x </div>
+      <div class="blocks col-xs-1 operations" draggable="true" ondragstart="drag(event)" id="leftParentheses"> ( </div>
+      <div class="blocks col-xs-1 operations" draggable="true" ondragstart="drag(event)" id="rightParentheses"> ) </div>
+      <div class="blocks col-xs-1 operations" draggable="true" ondragstart="drag(event)" id="numberInput"> [num] </div>
+      <div class="blocks col-xs-1 operations" draggable="true" ondragstart="drag(event)" id="numberInput"> [num] </div>
+    </div>
+  </div>
+
+</div>
+
+
+
+</body>
+<script>
+/*-----------------------------------------------------------------------------------------------------------
+
+WHERE YOU LEFT OFF: still adding to globalEquations, planning algorithm to compare user answer to a equation
+
+IDEAS TO ATTEMPT:
+  *using parentheses
+  *calculator function to solve for equations
+  *touch screen capability
+  *mass add variables to shorten code
+
+-----------------------------------------------------------------------------------------------------------*/
+
+
+
+var globalUnknown, globalNewProb;
+var globalEquations=[
+    [["velocity"],["displacement","divide","time"]],
+    [["displacement"],["velocity","multiply","time"]],
+    [["time"],["displacement","divide","velocity"]],
+
+    [["weight"],["mass","multiply","gravitational acceleration"]],
+    [["mass"],["weight","divide","gravitational acceleration"]],
+    [["gravitational acceleration"],["weight","divide","mass"]],
+
+    [["speed"],["distance","divide","time"]],
+    [["distance"],["speed","multiply","time"]],
+    [["time"],["distance","distance","speed"]],
+    //big five
+    //#1
+    [["displacement"],[".5","leftParentheses","velocity","minus","initial velocity","rightParentheses","multiply","time"]]
+    //#4
+    [["velocity"],["initial velocity","plus","acceleration","multiply","time"]],
+    [["initial velocity"],["velocity","minus","acceleration","multiply","time"]],
+    [["acceleration"],["leftParentheses","velocity","minus","initial velocity","rightParentheses","divide","time"]],
+    [["time"],["leftParentheses","velocity","minus","initial velocity","rightParentheses","divide","acceleration"]],
+
+    []
+
+
+  ];
+
+var globalProblemSet=[
+  ["weight","gravitational acceleration","mass"],
+  ["velocity","acceleration","time"],
+  ["speed","distance","time"],
+  ["velocity","initial velocity","acceleration","time"],
+  ["velocity","displacement","time"]
+];
+
+
+function changeProb(){
+  var problemSet=globalProblemSet;
+  globalNewProb=problemSet[Math.floor(Math.random()*problemSet.length)];
+  var pickUnknownIndex= Math.floor(Math.random()*globalNewProb.length);
+  globalUnknown=globalNewProb.splice(pickUnknownIndex,1);
+  globalNewProb=globalNewProb.join(" and ");
+  document.getElementById("problemTxt").innerHTML="<b>Given</b>: "+globalNewProb+" <br><b>Unknown</b>: " +globalUnknown;
+
+}
+
+function checkAns(){
+  //split answer into three parts: myUnknown, "equal", myGivens
+  var myUnknown, myGivens, tempLeft=[], tempRight=[];
+
+  var splitter=finalEq.indexOf("equal");
+  tempLeft=finalEq.splice(0,splitter+1);
+  tempLeft.pop();
+  tempRight=finalEq;
+    
+  console.log("left ="+tempLeft+" right="+tempRight);
+
+  //check if myUnknown === globalUnknown;
+    //! should i assume unknown is on lefthand side?
+  if(tempLeft.length < tempRight.length){
+    myUnknown=tempLeft;
+    myGivens=tempRight;
+  }
+  else{
+    myUnknown=tempRight;
+    myGivens=tempLeft;
+  }
+  console.log(myUnknown+" is my unknown. "+myGivens+" are part of my equation.");
+
+  //create correct answer
+
+  
+}
+
+function allowDrop(ev) {
+    ev.preventDefault();
+}
+
+function drag(ev) {
+    ev.dataTransfer.setData("text", ev.target.id);
+}
+
+var finalEq=[];
+
+function dropWork(ev) {
+    ev.preventDefault();
+    var data = ev.dataTransfer.getData("text");
+    ev.target.appendChild(document.getElementById(data));
+    finalEq.push(data);
+    console.log(finalEq);
+}
+function dropBank(ev) {
+    ev.preventDefault();
+    var data = ev.dataTransfer.getData("text");
+    ev.target.appendChild(document.getElementById(data));
+    for(var i=0;i<finalEq.length;i++){
+      if(finalEq[i] === data){
+        finalEq.splice(i,1);
+      }
+    }
+    console.log(finalEq);
+}
+
+// function changeVar(clickedId){
+//   var newVar=prompt("What would you like to substitute this variable with?");
+//   document.getElementById(clickedId).innerHTML=newVar;
+// }
+</script>
+
+<style>
+a, a:hover, a:visited, a:active{
+  text-decoration: none;
+  color:black;
+  cursor:context-menu;
+}
+.work-area{
+  height:45%;
+  border-style:groove;
+}
+.bank{
+  border-style: groove;
+  height:30%;
+  padding:3%;
+}
+.blocks{
+  border-radius:50%;
+  border-style:solid;
+  width:60px;
+  height:60px;
+  text-align: center;
+  margin:.25%;
+  padding:.5%;
+  line-height: 50px;
+  font-size: 27px;
+}
+.operations{
+  border-radius: 2%;
+}
+#problemTxt{
+  height:5%;
+}
+#numberInput{
+  font-size: 16px;
+}
+</style>
+
+
+</html>
