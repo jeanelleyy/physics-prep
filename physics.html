@@ -65,6 +65,31 @@ IDEAS TO ATTEMPT:
 
 
 var globalUnknown, globalNewProb;
+var globalEquations=[
+    [["velocity"],["displacement","divide","time"]],
+    [["displacement"],["velocity","multiply","time"]],
+    [["time"],["displacement","divide","velocity"]],
+
+    [["weight"],["mass","multiply","gravitational acceleration"]],
+    [["mass"],["weight","divide","gravitational acceleration"]],
+    [["gravitational acceleration"],["weight","divide","mass"]],
+
+    [["speed"],["distance","divide","time"]],
+    [["distance"],["speed","multiply","time"]],
+    [["time"],["distance","distance","speed"]],
+    //big five
+    //#1
+    [["displacement"],[".5","leftParentheses","velocity","minus","initial velocity","rightParentheses","multiply","time"]]
+    //#4
+    [["velocity"],["initial velocity","plus","acceleration","multiply","time"]],
+    [["initial velocity"],["velocity","minus","acceleration","multiply","time"]],
+    [["acceleration"],["leftParentheses","velocity","minus","initial velocity","rightParentheses","divide","time"]],
+    [["time"],["leftParentheses","velocity","minus","initial velocity","rightParentheses","divide","acceleration"]],
+
+    []
+
+
+  ];
 
 var globalProblemSet=[
   ["weight","gravitational acceleration","mass"],
@@ -108,7 +133,7 @@ function checkAns(){
   }
   console.log(myUnknown+" is my unknown. "+myGivens+" are part of my equation.");
 
-  //show correct answer
+  //create correct answer
 
   
 }
