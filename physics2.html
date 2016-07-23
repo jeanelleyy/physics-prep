@@ -1,0 +1,209 @@
+<html>
+<head>
+	<title>Physics V2</title>
+	<script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.12.4.min.js"></script>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+	<script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=AM_HTMLorMML"></script>
+	<link href='https://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+	
+	
+</head>
+<body>
+	<div class="container">
+	<div id="header">
+		<center>
+		<div class="row">
+			
+		<ul class="nav nav-tabs">
+			<li class="dropdown">
+          		<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><h2>Equations</h2> <span class="caret"></span></a>
+          		<ul class="dropdown-menu">
+		            <li><a href="#mechanics">Mechanics</a></li>
+		            <li><a href="#electricity">Electricity and Magnetism</a></li>
+		            <li><a href="#waves">Waves and Optics</a></li>
+		            <li><a href="#heat">Heat and Thermodynamics</a></li>
+		            <li><a href="#modern">Modern Physics</a></li>
+		            <li><a href="#misc">Miscellaneous</a></li>
+          		</ul>
+     		</li>
+			<li role="presentation"><a href="#constants"><h2>Constants</h2></a></li>
+			<li role="presentation"><a href="#"><h2>Quiz</h2></a></li>
+			<li role="presentation"><a href="#"><h2>Help</h2></a></li>
+		</ul>		
+		</div>
+		</center>
+	</div>
+	<div id="display">
+		<h3 id="equations">List of All Equations</h3>
+		<div id="mechanics">
+			<h4><b>Mechanics</b> (kinematics, dynamics, energy and momentum, circular motion, simple harmonic motion, gravity)</h4>
+		</div>
+		<div id="electricity">
+			<a href="#header"><h4><b>Electricity and Magnetism</b> (electric fields, forces, and potentials; capacitance; circuit elements and DC circuits; magnetism)</h4></a>
+		</div>
+		<div id="waves">
+			<a href="#header"><h4><b>Waves and Optics</b> (general properties, reflection and refraction, ray optics, physical optics)</h4></a>
+		</div>
+		<div id="heat">
+			<a href="#header"><h4><b>Heat and Thermodynamics</b> (thermal properties, laws of thermodynamics)</h4></a>
+		</div>
+		<div id="modern">
+			<a href="#header"><h4><b>Modern Physics</b> (quantum phenomena, atomic, nuclear and particle physics, relativity)</h4></a>
+		</div>
+		<div id="misc">
+			<a href="#header"><h4><b>Miscellaneous</b> (history, analytical skills, contemporary physics)</h4></a>
+		</div>
+
+		<hr>
+		<a href="#header"><h3 id="constants">Constants</h3></a>
+		<p id="ctext"></p>
+	</div>
+	</div>
+
+
+
+
+</body>
+
+<script type="text/javascript">
+
+
+var Equation=function(eqname,vars,category,note){
+	this.eqname=eqname;
+	this.vars=vars;
+	this.category=category;
+	this.note="("+note+")";
+	if(this.note==="("+undefined+")"){
+		this.note="";
+	}
+	eqList.push(this);
+
+	this.add=function(){
+		var addeq=document.createElement("p");
+		addeq.id="eq"+(eqList.indexOf(this)+1);
+		addeq.innerHTML="<u>"+this.eqname+"</u>: `"+this.vars+"`<i> &emsp;"+this.note+"</i>";
+		document.getElementById(this.category).appendChild(addeq);
+	}
+}
+
+var Constant=function(cname,constant){
+	this.cname=cname;
+	this.constant=constant;
+	cList.push(this);
+
+	this.add=function(){
+		var addc=document.createElement("p");
+		addc.id="c"+(cList.indexOf(this)+1);
+		addc.innerHTML="<u>"+this.cname+"</u>: `"+this.constant+"`";
+		document.getElementById("ctext").appendChild(addc);
+	}
+}
+
+
+var eqList=[];
+var cList=[];
+
+var eq1= new Equation("Newton's Second Law","F=ma","mechanics","Force is ma");
+var eq2= new Equation("Basic Velocity","v=d/t","mechanics");
+var eq3= new Equation("Big Five #1","Deltas=(v-v_0)t","mechanics");
+var eq4= new Equation("Big Five #2","Deltas=v_0t+1/2at^2","mechanics");
+var eq5= new Equation("Big Five #3","Deltas=vt-1/2at^2","mechanics");
+var eq6= new Equation("Big Five #4","v=v_0+at","mechanics");
+var eq7= new Equation("Big Five #5","v^2=v_0^2+2aDeltas","mechanics");
+var eq8= new Equation("Momentum","p=mv","mechanics");
+var eq9= new Equation("Kinetic Energy","KE=1/2mv^2","mechanics");
+var eq10= new Equation("Basic Work","W=FDeltas","mechanics");
+var eq11= new Equation("Work","W=Fscostheta","mechanics");
+var eq12= new Equation("Work with weight","W=(mg)h","mechanics");
+var eq13= new Equation("Work-Energy Theorem","W=DeltaKE","mechanics", "#WOKE");
+var eq14= new Equation("Work with Friction","W=muNs","mechanics");
+var eq15= new Equation("Power","P=W/t","mechanics");
+var eq16= new Equation("Centripetal Force","F_c=mv^2/r","mechanics");
+var eq17= new Equation("Centripetal Acceleration","a_c=v^2/r","mechanics");
+var eq18= new Equation("Torque","T=F_(_|_)r","mechanics");
+var eq19= new Equation("Angular Momentum","L=mvr","mechanics");
+var eq20= new Equation("Hooke's Law","F_(spri ng)=-kx","mechanics","Fkx`~~`fix");
+var eq21= new Equation("Projectile X Position","Deltax=v_(0x)t","mechanics");
+var eq22= new Equation("Couloumb's Law","F=k(q_1q_2)/r^2","electricity");
+var eq23= new Equation("Wave Velocity","v=lambdaf","waves");
+var eq24= new Equation("Electric Power","P=IV","electricity","VIP status");
+var eq25= new Equation("Static Friction","mu_x=f_s/N","mechanics", "FUN");
+var eq26= new Equation("Kinetic Friction","mu_x=f_k/N","mechanics", "FUN");
+var eq27= new Equation("Ohm's Law","V=IR","electricity","vir=to go");
+var eq28= new Equation("Force with Momentum","F=(Deltap)/(Deltat)","mechanics");
+var eq29= new Equation("Acceleration","a=(Deltav)/(Deltat)","mechanics","vat of acceleration");
+var eq30= new Equation("Impulse","J=FDeltat=Deltap","mechanics");
+var eq31= new Equation("Conservation of Kinetic Energy","KE_1+KE_2=KE_1^'+KE_2^'","mechanics");
+var eq32= new Equation("Center of Mass","(m_1x_1+m_2x_2+...+m_n+x_n)/M","mechanics");
+var eq33= new Equation("Kelvin-Celsius","K=C+273","heat");
+var eq34= new Equation("Specific Heat","Q=mcDeltaT","heat");
+var eq35= new Equation("Phase Change","Q=mL","heat");
+var eq36= new Equation("Linear Expansion","DeltaL=alphaL_0DeltaT","heat", "Look! A loot!");
+var eq37= new Equation("Volume Expansion","DeltaV=betaV_0DeltaT","heat", "BVOOT BVOOT");
+var eq38= new Equation("Alpha-Beta","beta=3alpha","heat");
+var eq39= new Equation("Pressure","F/A","heat");
+var eq40= new Equation("Average Translational Kinetic Energy","K_(avg)=3/2k_BT","heat");
+var eq41= new Equation("Ideal Gas Law","PV=nRT","heat","There's a Nugget in the PerVeRT");
+var eq42= new Equation("Root-mean-square Speed","v_(rms)=sqrt((3RT)/m)","heat");
+var eq43= new Equation("First Law of Thermodynamics","DeltaU=Q-W","heat", "Baby said,'UnQWl!' Isn't that cute?");
+var eq44= new Equation("Work with Gas","W=PDeltaV","heat", "Women's Point of View");
+var eq45= new Equation("Thermal Efficiency","e=(Q_h+Q_c)/Q_h","heat");
+var eq46= new Equation("Carnot Cycle","e=(T_h+T_c)/T_h","heat");
+var eq47= new Equation("Frequency of Oscillations","f=1/(2pi)sqrt(k/m)","mechanics");
+var eq48= new Equation("Period of Oscillations","T=2pisqrt(m/k)","mechanics");
+var eq49= new Equation("Elastic Potential","U_s=1/2kx^2","mechanics");
+var eq50= new Equation("Maximum Oscillation Velocity","v_(max)=2pifA","mechanics");
+var eq51= new Equation("Displacement of Oscillations","x=Acos(2pift+phi)","mechanics");
+var eq52= new Equation("Oscillation Velocity at a Point","v=+-2pifsqrt(A^2-x^2)","mechanics");
+var eq53= new Equation("Vertical Equilibrium of Springs","kd=mg","mechanics","mega kid");
+var eq54= new Equation("Vertical Spring Force","F=k(d+y)-mg","mechanics","The f**k you doing?! *pause* imig");
+var eq55= new Equation("Restoring Pendulum Force","F_(restoring)=mgsintheta","mechanics");
+var eq56= new Equation("Pendulum Frequency","f=1/2pisqrt(g/L)","mechanics");
+var eq57= new Equation("Pendulum Period","T=2pisqrt(L/g)","mechanics");
+//var eq58= new Equation();
+//var eq59= new Equation();
+
+
+var c1= new Constant("Gravitational Acceleration","g=9.8m/(s^2)");
+var c2= new Constant("Avogadro's Number","N_A=6.022*10^23 mol^-1");
+var c3= new Constant("Gas Constant","R=8.312 J/(mol*K)");
+var c4= new Constant("Boltzmann Constant","k_B=R/N_A=1.38064852*10^(-23) J*K^-1");
+
+
+
+
+
+//calls add function on every object in the list
+for(var i=0;i<eqList.length;i++){
+	eqList[i].add();
+}
+
+for(var i=0;i<cList.length;i++){
+	cList[i].add();
+}
+
+$(document).ready(function() {
+    $(".dropdown-toggle").dropdown();
+});
+
+</script>
+<style type="text/css">
+a{
+	text-decoration: none;
+	color:black;
+}
+p{
+	font-size: 10pt;
+	font-family:Open Sans;
+	margin:2% 4%;
+}
+h1,h2,h3,h4{
+	font-family: Open Sans;
+}
+h4{
+	margin:2%;
+}
+
+</style>
+</html>
