@@ -124,7 +124,7 @@ var eq16= new Equation("Centripetal Force","F_c=mv^2/r","mechanics");
 var eq17= new Equation("Centripetal Acceleration","a_c=v^2/r","mechanics");
 var eq18= new Equation("Torque","T=F_(_|_)r","mechanics");
 var eq19= new Equation("Angular Momentum","L=mvr","mechanics");
-var eq20= new Equation("Hooke's Law","F_(spri ng)=-kx","mechanics","Fkx`~~`fix");
+var eq20= new Equation("Hooke's Law","F_(spri ng)=-kx","mechanics","Fkx `~~` fix");
 var eq21= new Equation("Projectile X Position","Deltax=v_(0x)t","mechanics");
 var eq22= new Equation("Couloumb's Law","F=k(q_1q_2)/r^2","electricity");
 var eq23= new Equation("Wave Velocity","v=lambdaf","waves");
@@ -187,6 +187,25 @@ for(var i=0;i<cList.length;i++){
 $(document).ready(function() {
     $(".dropdown-toggle").dropdown();
 });
+
+
+function remove(){
+	var str=[];
+	for(var j=0;j<eq1["vars"].length;j++){
+		if(eq1["vars"][j]==="="){
+			str.push(eq1["vars"][j]);
+		}
+		//if delta, sub/sup, greek letters, operations
+		else{
+			str.push("[]");
+		}
+	}
+	eq1["vars"]=str.join("");
+}
+
+
+
+
 
 </script>
 <style type="text/css">
