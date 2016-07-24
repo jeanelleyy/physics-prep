@@ -13,7 +13,7 @@
 	<div class="container">
 	<div id="header">
 		<center>
-		<h1 style="margin-top:5%;">Physics Help</h1>
+		<h1 style="margin-top:5%;">Physics Guide</h1>
 		<div class="row">
 			
 		<ul class="nav nav-tabs">
@@ -88,24 +88,8 @@ var Equation=function(eqname,vars,category,note){
 	}
 
 	this.remove=function(){
-		var str=[];
-		for(var j=0;j<this.vars.length;j++){
-			if(this["vars"][j]==="="){
-				str.push(this["vars"][j]);
-			}
-			//if delta, sub/sup, greek letters, operations
-			//else if(this)
-			else{
-				str.push("[]");
-			}
-		}
-		this.vars=str.join("");
-		console.log(this.vars);
-	}
-	this.removeRegex=function(){
 		var str=this.vars;
-		var newstr=str.replace(/[A-Za-z]/g,"[]");
-		console.log(newstr);
+		console.log(str+">>"+newstr);
 	}
 }
 
@@ -143,7 +127,7 @@ var eq14= new Equation("Work with Friction","W=muNs","mechanics");
 var eq15= new Equation("Power","P=W/t","mechanics");
 var eq16= new Equation("Centripetal Force","F_c=mv^2/r","mechanics");
 var eq17= new Equation("Centripetal Acceleration","a_c=v^2/r","mechanics");
-var eq18= new Equation("Torque","T=F_(_|_)r","mechanics");
+var eq18= new Equation("Torque","T=F_(_|_)*r","mechanics");
 var eq19= new Equation("Angular Momentum","L=mvr","mechanics");
 var eq20= new Equation("Hooke's Law","F_(spri ng)=-kx","mechanics","Fkx `~~` fix");
 var eq21= new Equation("Projectile X Position","Deltax=v_(0x)t","mechanics");
@@ -179,7 +163,7 @@ var eq50= new Equation("Maximum Oscillation Velocity","v_(max)=2pifA","mechanics
 var eq51= new Equation("Displacement of Oscillations","x=Acos(2pift+phi)","mechanics");
 var eq52= new Equation("Oscillation Velocity at a Point","v=+-2pifsqrt(A^2-x^2)","mechanics");
 var eq53= new Equation("Vertical Equilibrium of Springs","kd=mg","mechanics","mega kid");
-var eq54= new Equation("Vertical Spring Force","F=k(d+y)-mg","mechanics","The f**k you doing?! *pause* imig");
+var eq54= new Equation("Vertical Spring Force","F=k(d+y)-mg","mechanics","The f&$k you doing?! *pause* imig");
 var eq55= new Equation("Restoring Pendulum Force","F_(restoring)=mgsintheta","mechanics");
 var eq56= new Equation("Pendulum Frequency","f=1/2pisqrt(g/L)","mechanics");
 var eq57= new Equation("Pendulum Period","T=2pisqrt(L/g)","mechanics");
@@ -199,6 +183,7 @@ var c4= new Constant("Boltzmann Constant","k_B=R/N_A=1.38064852*10^(-23) J*K^-1"
 //calls add function on every object in the list
 for(var i=0;i<eqList.length;i++){
 	eqList[i].add();
+	eqList[i].remove();
 }
 
 for(var i=0;i<cList.length;i++){
