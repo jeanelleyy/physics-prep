@@ -29,7 +29,7 @@
           		</ul>
      		</li>
 			<li role="presentation"><a href="#constants"><h2>Constants</h2></a></li>
-			<li role="presentation"><a href="#"><h2>Quiz</h2></a></li>
+			<li role="presentation"><a href="quiz.html"><h2>Quiz</h2></a></li>
 			<li role="presentation"><a href="#"><h2>Help</h2></a></li>
 		</ul>		
 		</div>
@@ -85,6 +85,27 @@ var Equation=function(eqname,vars,category,note){
 		addeq.id="eq"+(eqList.indexOf(this)+1);
 		addeq.innerHTML="<u>"+this.eqname+"</u>: `"+this.vars+"`<i> &emsp;"+this.note+"</i>";
 		document.getElementById(this.category).appendChild(addeq);
+	}
+
+	this.remove=function(){
+		var str=[];
+		for(var j=0;j<this.vars.length;j++){
+			if(this["vars"][j]==="="){
+				str.push(this["vars"][j]);
+			}
+			//if delta, sub/sup, greek letters, operations
+			//else if(this)
+			else{
+				str.push("[]");
+			}
+		}
+		this.vars=str.join("");
+		console.log(this.vars);
+	}
+	this.removeRegex=function(){
+		var str=this.vars;
+		var newstr=str.replace(/[A-Za-z]/g,"[]");
+		console.log(newstr);
 	}
 }
 
@@ -189,19 +210,7 @@ $(document).ready(function() {
 });
 
 
-function remove(){
-	var str=[];
-	for(var j=0;j<eq1["vars"].length;j++){
-		if(eq1["vars"][j]==="="){
-			str.push(eq1["vars"][j]);
-		}
-		//if delta, sub/sup, greek letters, operations
-		else{
-			str.push("[]");
-		}
-	}
-	eq1["vars"]=str.join("");
-}
+
 
 
 
