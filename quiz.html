@@ -5,13 +5,16 @@
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
 	<script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=AM_HTMLorMML"></script>
-	<link href='https://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>	
+	<link href='https://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+	<script type="text/javascript" src="javascript.js"></script>
+
+
 </head>
 <body>
 <div class="container">
 	<div id="header">
 		<center>
-		<h1 style="margin-top:5%;">Physics Help</h1>
+		<h1 style="margin-top:5%;">Physics Quiz</h1>
 		<div class="row">
 			
 		<ul class="nav nav-tabs">
@@ -22,21 +25,45 @@
 		</div>
 		</center>
 	</div>
+	<button style="margin:2%;" onclick="location.reload();" class="btn btn-secondary-outline btn-block">Refresh</button>
+	<div id="qarea">
+		<div id="qname"></div>
+		<div id="qeq"></div>
+		<br>
+		<div class="col-lg-6">
+    		<div class="input-group">
+      			<input type="text" class="form-control" placeholder="Insert variable">
+      			<span class="input-group-btn">
+        			<button class="btn btn-secondary" type="button" onclick="check();">Check</button>
+      			</span>
+    		</div>
+  		</div>
 
-
-
-
-
-
+	</div>
 
 </div>
 
 </body>
 <script type="text/javascript">
 
+for(var i=0;i<eqList.length;i++){
+	console.log(eqList[i].vars+">>"+eqList[i].empty);
+}
 
+function pick(){
+	var pick=Math.floor(Math.random()*eqList.length);
+	document.getElementById("qname").innerHTML=eqList[pick].eqname+": `"+eqList[pick].vars+"`";
+	document.getElementById("qeq").innerHTML="`"+eqList[pick].empty+"`";
+};
 
+function check(){
+	
 
+}
+
+$(document).ready(function() {
+    pick();
+});
 
 </script>
 <style type="text/css">
