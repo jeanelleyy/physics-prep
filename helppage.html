@@ -1,10 +1,27 @@
 <html>
 <head>
 	<title>Help Page</title>
+	<script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.12.4.min.js"></script>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+	<script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=AM_HTMLorMML"></script>
+	<link href='https://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
 <head>
 <body>
-	<center><h1>Help Page</h1></center>
-	<a href="physics2.html"><button>Home</button></a>
+<div class="container">
+	<div id="header">
+		<center>
+		<h1 style="margin-top:5%;">Physics Guide</h1>
+		<div class="row">
+			
+		<ul class="nav nav-tabs">
+			<li role="presentation"><a href="physics2.html"><h2>Home</h2></a></li>
+			<li role="presentation"><a href="quiz.html"><h2>Quiz</h2></a></li>
+			<li role="presentation"><a href="helppage.html"><h2>Help</h2></a></li>
+		</ul>		
+		</div>
+		</center>
+	</div>
 	<h2>Table of Content</h2>
 		<ul>
 			<a href="#speedVsVelocity"><li>Speed vs. Velocity</li></a>
@@ -21,9 +38,11 @@
 
 	<h2 id="speedVsVelocity">Speed Vs. Velocity</h2>
 	<p>Speed is a scalar quantity, meaning it has no direction. Velocity, on the other hand, is a vector quantity and has direction. The difference between their formulas lie in the distance/displacement variable. If the variable being divided by time is distance, then that is the formula for speed. Dividing displacement with time will give you velocity.</p>
+
 	<br>
+
 	<h2 id="bigFive">Five Kinematic Equations</h2>
-	<center><table>
+	<center><table class="table table-striped">
 		<tr>
 			<td>Missing Value: <b>a</b></td>
 			<td> &#916s= .5(v-v<sub>i</sub>)t</td>
@@ -45,20 +64,32 @@
 			<td>v<sup>2</sup>=v<sup>2</sup><sub>0</sub>+2a&#916s</td>
 		</tr>
 	</table></center>
+
+	<br>
+
+	<h2 id="cheatSheet">Cheat Sheets</h2>
+</div>
 </body>
 <script>
 
 </script>
 
 <style>
-ul{
-	list-style-type: none;
+a{
+	text-decoration: none;
+	color:black;
 }
-tr,td{
-	border: solid;
-	padding:3%;
-	width:300px;
+p{
+	font-size: 10pt;
+	font-family:Open Sans;
+	margin:2% 4%;
+}
+h1,h2,h3,h4{
+	font-family: Open Sans;
+}
+h4{
+	margin:2%;
+}
 
-}
 </style>
 </html>
