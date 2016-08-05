@@ -26,9 +26,12 @@
 		</div>
 		</center>
 	</div>
-	<button style="margin:2%;" class="btn btn-secondary-outline btn-block" onclick="picked();" >Change Question</button>
+	<div class="row" style="margin-top:2%;" >
+		<div class="col-lg-3"><button class="btn btn-secondary-outline btn-block" onclick="picked();" >Change Question</button></div>
+		<div class="col-lg-3"><button class="btn btn-secondary btn-block" type="button" onclick="check();">Check Answer</button></div>
+	</div>
 	<div id="qarea">
-		<div id="scorea">Score: 0</div>
+		<div id="scorea" class="col-lg-6">Score: 0</div>
 		<br>
 		<div id="qname"></div>
 		<div id="qeq">
@@ -45,7 +48,7 @@
     		</div>
   		</div>
   		<br>
-  		<div class="col-lg-3"><button class="btn btn-secondary" type="button" onclick="check();">Check Answer</button></div>
+  		
 
 	</div>
 

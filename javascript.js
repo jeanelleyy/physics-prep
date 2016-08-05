@@ -59,8 +59,8 @@ var eq21= new Equation("Projectile X Position","Deltax=v_(0x)t","Delta[]=[][]","
 var eq22= new Equation("Couloumb's Law","F=k(q_1q_2)/r^2","[]=[]([][])/[]^2","electricity");
 var eq23= new Equation("Wave Velocity","v=lambdaf","[]=[][]","waves");
 var eq24= new Equation("Electric Power","P=IV","[]=[][]","electricity","VIP status");
-var eq25= new Equation("Static Friction","mu_x=f_s//N","[]=[]//[]","mechanics", "FUN");
-var eq26= new Equation("Kinetic Friction","mu_x=f_k//N","[]=[]//[]","mechanics", "FUN");
+var eq25= new Equation("Static Friction","F_s=mu_sN","[]=[][]","mechanics", "FUN");
+var eq26= new Equation("Kinetic Friction","F_k=mu_kN","[]=[][]","mechanics", "FUN");
 var eq27= new Equation("Ohm's Law","V=IR","[]=[][]","electricity","vir=to go");
 var eq28= new Equation("Force with Momentum","F=(Deltap)//(Deltat)","[]=(Delta[])//(Delta[])","mechanics");
 var eq29= new Equation("Acceleration","a=(Deltav)/(Deltat)","[]=(Delta[])/(Delta[])","mechanics","vat of acceleration");
